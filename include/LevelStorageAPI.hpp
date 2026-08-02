@@ -18,13 +18,16 @@
 namespace alpha::level_storage {
 
     /// internal getSavedValue method used by the templated one
-    LEVEL_STORAGE_API_DLL matjson::Value& getSavedValueInternal(cocos2d::CCLayer* layer, geode::ZStringView str, geode::Mod* mod);
+    LEVEL_STORAGE_API_DLL matjson::Value& getSavedValueInternal(cocos2d::CCLayer* layer, geode::ZStringView str, geode::Mod* mod = geode::Mod::get());
 
     /// get json container of saved values
-    LEVEL_STORAGE_API_DLL matjson::Value& getSaveContainer(cocos2d::CCLayer* layer, geode::Mod* mod);
+    LEVEL_STORAGE_API_DLL matjson::Value& getSaveContainer(cocos2d::CCLayer* layer, geode::Mod* mod = geode::Mod::get());
 
     /// set a value with a key
     LEVEL_STORAGE_API_DLL void setSavedValue(LevelEditorLayer* layer, geode::ZStringView str, const matjson::Value& value, geode::Mod* mod = geode::Mod::get());
+
+    /// clears a saved value with a key
+    LEVEL_STORAGE_API_DLL void clearSavedValue(LevelEditorLayer* layer, geode::ZStringView str, geode::Mod* mod = geode::Mod::get());
 
     /// get a value by a key
     template<class T>

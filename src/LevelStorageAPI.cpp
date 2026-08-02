@@ -42,6 +42,12 @@ namespace alpha::level_storage {
         lsLevel->getDataContainer(mod)[str] = value;
     }
 
+    void clearSavedValue(LevelEditorLayer* layer, geode::ZStringView str, geode::Mod* mod) {
+        auto lsLevel = levelForLayer(layer);
+        if (!lsLevel) return;
+        lsLevel->getDataContainer(mod)[str].clear();
+    }
+
     void waitForLevel(LevelInfoLayer* layer, std::function<void()>&& callback) {
         auto lsInfoLayer = static_cast<LSLevelInfoLayer*>(layer);
         lsInfoLayer->addCallback(std::move(callback));
