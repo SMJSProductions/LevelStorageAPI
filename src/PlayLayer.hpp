@@ -6,5 +6,5 @@
 using namespace geode::prelude;
 
 class $modify(LSPlayLayer, PlayLayer) {
-	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects);
+    bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects);
 };

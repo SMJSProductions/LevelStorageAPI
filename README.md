@@ -37,13 +37,13 @@ void setSavedValue(LevelEditorLayer* layer, ZStringView str, const matjson::Valu
 ```cpp
 class $modify(MyLevelEditorLayer, LevelEditorLayer) {
     bool init(GJGameLevel* level, bool noUI) {
-		if (!LevelEditorLayer::init(level, noUI)) return false;
+        if (!LevelEditorLayer::init(level, noUI)) return false;
 
-		int openedCount = alpha::level_storage::getSavedValue<int>(this, "opened-count");
-		alpha::level_storage::setSavedValue(this, "opened-count", openedCount + 1);
+        int openedCount = alpha::level_storage::getSavedValue<int>(this, "opened-count");
+        alpha::level_storage::setSavedValue(this, "opened-count", openedCount + 1);
 
-		return true;
-	}
+        return true;
+    }
 };
 ```
 
@@ -61,17 +61,16 @@ void waitForLevel(LevelInfoLayer* layer, std::function<void()>&& callback);
 
 ```cpp
 class $modify(MyLevelInfoLayer, LevelInfoLayer) {
-
     bool init(GJGameLevel* level, bool challenge) {
-		if (!LevelInfoLayer::init(level, challenge)) return false;
+        if (!LevelInfoLayer::init(level, challenge)) return false;
 
-		alpha::level_storage::waitForLevel(this, [this] {
-			int openedCount = alpha::level_storage::getSavedValue<int>(this, "opened-count");
-			log::info("opened count: {}", openedCount);
-		});
+        alpha::level_storage::waitForLevel(this, [this] {
+          int openedCount = alpha::level_storage::getSavedValue<int>(this, "opened-count");
+          log::info("opened count: {}", openedCount);
+        });
 
-		return true;
-	}
+        return true;
+    }
 };
 ```
 

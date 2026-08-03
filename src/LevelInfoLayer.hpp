@@ -12,8 +12,8 @@ class $modify(LSLevelInfoLayer, LevelInfoLayer) {
     }
 
     struct Fields {
-		std::vector<std::function<void()>> m_waitForLevelCallbacks;
-	};
+        std::vector<std::function<void()>> m_waitForLevelCallbacks;
+    };
 
     bool init(GJGameLevel* level, bool challenge);
     void levelDownloadFinished(GJGameLevel* level);
