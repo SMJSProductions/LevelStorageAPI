@@ -27,27 +27,21 @@ void LSGJGameLevel::extractFromString() {
             if (!tilde) continue;
 
             parseData({pipe + 1, static_cast<size_t>(tilde - (pipe + 1))});
-            return; 
+            return;
         }
     }
 }
 
 matjson::Value& LSGJGameLevel::getDataContainer(Mod* mod) {
-    auto fields = m_fields.self();
-    return fields->m_data[mod->getID()];
+    return m_fields->m_data[mod->getID()];
 }
 
 const matjson::Value& LSGJGameLevel::getData() {
-    auto fields = m_fields.self();
-    return fields->m_data;
+    return m_fields->m_data;
 }
 
 void LSGJGameLevel::parseData(std::string_view data) {
-    auto fields = m_fields.self();
-
-    auto decodeRes = utils::base64::decodeString(data);
-    auto res = matjson::parse(decodeRes.unwrapOrDefault());
-    fields->m_data = res.unwrapOrDefault();
+    m_fields->m_data = matjson::parse(base64::decodeString(data).unwrapOrDefault()).unwrapOrDefault();
 }
 
 matjson::Value& LSGJGameLevel::getEmptyData() {

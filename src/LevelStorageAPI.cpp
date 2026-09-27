@@ -11,14 +11,11 @@ namespace alpha::level_storage {
     LSGJGameLevel* levelForLayer(CCLayer* layer) {
         if (auto gameLayer = typeinfo_cast<GJBaseGameLayer*>(layer)) {
             return static_cast<LSGJGameLevel*>(gameLayer->m_level);
-        }
-        if (auto editorUI = typeinfo_cast<EditorUI*>(layer)) {
+        } else if (auto editorUI = typeinfo_cast<EditorUI*>(layer)) {
             return static_cast<LSGJGameLevel*>(editorUI->m_editorLayer->m_level);
-        }
-        if (auto infoLayer = typeinfo_cast<LevelInfoLayer*>(layer)) {
+        } else if (auto infoLayer = typeinfo_cast<LevelInfoLayer*>(layer)) {
             return static_cast<LSGJGameLevel*>(infoLayer->m_level);
-        }
-        if (auto editLevelLayer = typeinfo_cast<EditLevelLayer*>(layer)) {
+        } else if (auto editLevelLayer = typeinfo_cast<EditLevelLayer*>(layer)) {
             return static_cast<LSGJGameLevel*>(editLevelLayer->m_level);
         }
         return nullptr;
@@ -49,7 +46,6 @@ namespace alpha::level_storage {
     }
 
     void waitForLevel(LevelInfoLayer* layer, std::function<void()>&& callback) {
-        auto lsInfoLayer = static_cast<LSLevelInfoLayer*>(layer);
-        lsInfoLayer->addCallback(std::move(callback));
+        static_cast<LSLevelInfoLayer*>(layer)->addCallback(std::move(callback));
     }
 }

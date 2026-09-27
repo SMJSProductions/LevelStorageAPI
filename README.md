@@ -6,7 +6,7 @@ It is stored per mod in JSON that is stored in the level data.
 
 All of these must be called after the class init has been called.
 
-**The `Mod*` param is defauled to `Mod::get()` so you are accessing your own save container. You can access another mod's save container by passing in their `Mod*`.**
+**The `Mod*` param is defaulted to `Mod::get()` so you are accessing your own save container. You can access another mod's save container by passing in their `Mod*`.**
 
 ### Getting Saved Values
 
@@ -49,7 +49,7 @@ class $modify(MyLevelEditorLayer, LevelEditorLayer) {
 
 ### Getting Saved Values on LevelInfoLayer
 
-Since levels are downloaded and the data is with that downloaded level, you can't simply have the information ready in init, so this API provides a way to do so. The callback runs whenever the level string is available. So if the level is already downloaded, it will run in init. If it is not downloaded it will run when it is downloaded. 
+Since levels are downloaded and the data is with that downloaded level, you can't simply have the information ready in init, so this API provides a way to do so. The callback runs whenever the level string is available. So if the level is already downloaded, it will run in init. If it is not downloaded it will run when it is downloaded.
 
 **Note that this can be called multiple times, as it runs every time the level is downloaded, such as after a refresh, so be sure to handle any cleanup neatly.**
 
@@ -65,8 +65,8 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
         if (!LevelInfoLayer::init(level, challenge)) return false;
 
         alpha::level_storage::waitForLevel(this, [this] {
-          int openedCount = alpha::level_storage::getSavedValue<int>(this, "opened-count");
-          log::info("opened count: {}", openedCount);
+            int openedCount = alpha::level_storage::getSavedValue<int>(this, "opened-count");
+            log::info("opened count: {}", openedCount);
         });
 
         return true;
@@ -76,4 +76,8 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 
 ### Extra Info
 
-Internally, this mod uses the Guidelines string to add data. This is carefully set up such that there is no crashes even in vanilla without the mod. 
+Internally, this mod uses the Guidelines string to add data. This is carefully set up such that there is no crashes even in vanilla without the mod.
+
+## Previous Owner
+
+This mod is an official continuation of the Level Storage API mod from [Alphalaneous](https://linktr.ee/Alphalaneous). [SMJS](https://github.com/SMJSProductions) now maintains the mod.

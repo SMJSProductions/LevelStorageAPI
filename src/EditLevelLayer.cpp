@@ -2,7 +2,7 @@
 #include "GJGameLevel.hpp"
 
 bool LSEditLevelLayer::init(GJGameLevel* level) {
-    auto lsLevel = static_cast<LSGJGameLevel*>(level);
-    lsLevel->extractFromString();
+    static_cast<LSGJGameLevel*>(level)->extractFromString();
+
     return EditLevelLayer::init(level);
 }

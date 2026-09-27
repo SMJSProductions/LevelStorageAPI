@@ -1,3 +1,7 @@
+# 1.0.6
+- Add credits back.
+- Bump Geode version.
+
 # 1.0.5
 - Add a clear saved value method.
 - Removed credits to the old owner as requested by the old owner.

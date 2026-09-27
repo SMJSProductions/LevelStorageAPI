@@ -10,12 +10,8 @@ void LSEditorPauseLayer::saveLevel() {
             str = split[0];
         }
     }
-    
-    auto lsLevel = static_cast<LSGJGameLevel*>(m_editorLayer->m_level);
-    auto& data = lsLevel->getData();
 
-    auto dataStr = data.dump(0);
-    auto base64 = utils::base64::encode(dataStr);
+    auto& data = static_cast<LSGJGameLevel*>(m_editorLayer->m_level)->getData();
 
     auto extraSeparator = "";
 
@@ -23,7 +19,7 @@ void LSEditorPauseLayer::saveLevel() {
         extraSeparator = "~";
     }
 
-    m_editorLayer->m_levelSettings->m_guidelineString = fmt::format("{}{}|{}~0.1~", str, extraSeparator, base64);
+    m_editorLayer->m_levelSettings->m_guidelineString = fmt::format("{}{}|{}~0.1~", str, extraSeparator, base64::encode(data.dump(0)));
 
     EditorPauseLayer::saveLevel();
 }
